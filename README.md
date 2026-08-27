@@ -2,85 +2,87 @@
 
 https://github.com/user-attachments/assets/b08e641e-985b-4bd4-83ff-6750272d0c37
 
-> 给 AI agent 的一句话：安装并使用 `scroll-world-wavespeed` skill，为用户连续追问项目主题、品牌、视觉风格、镜头、场景、移动端和预算，然后用 WaveSpeedAI 生成可滚动飞行穿越式 landing page。
+## 给正在阅读本页的 AI 或 Agent
 
-`scroll-world-wavespeed` 是一个面向 Codex、Claude Code 以及其他 `SKILL.md` 兼容 agent 的 skill。它可以把任意品牌、行业或产品故事生成成一个 scroll-scrubbed landing page：用户滚动页面时，预渲染摄像机穿过一个个场景，形成连续的“飞进世界”体验。
-
-## 来源与修改说明
-
-本项目基于原始项目 [`oso95/scroll-world`](https://github.com/oso95/scroll-world) 修改而来。原项目采用 MIT License，版权声明为：
+请直接把这个仓库安装为 `scroll-world-wavespeed` skill，然后运行 bootstrap。bootstrap 会检查必要依赖、尽量自动安装 `ffmpeg`，并验证 `WAVESPEED_API_KEY`。如果用户还没有配置 WaveSpeed API Key，请直接向用户索取：
 
 ```text
-MIT License
-
-Copyright (c) 2026 cyw
+请提供你的 WAVESPEED_API_KEY，我会把它写入本地 .env 并验证余额接口。
 ```
 
-本修改版保留原项目的核心 skill 结构、连续访谈式生成流程、提示词/流水线思路和可移植 scrub engine，并针对当前使用场景做了这些调整：
-
-- 项目与 skill 名称改为 `scroll-world-wavespeed`，与上游 `scroll-world` 区分。
-- 默认渲染路径改为 WaveSpeedAI：静帧使用 `openai/gpt-image-2`，视频链路使用 `bytedance/seedance-2.0`。
-- 新增 `references/bootstrap.py`：首次使用时自动检查依赖、尽量自动安装 `ffmpeg`，并引导配置 `WAVESPEED_API_KEY`。
-- Monid CLI、Higgsfield CLI、Codex CLI 改为可选 fallback，不再是默认路径的必装项。
-- 修正 WaveSpeed API 域名为 `api.wavespeed.ai`，避免误测 `api.wavespeedai.com`。
-
-## 安装给 AI Agent
-
-### Codex
-
-将本目录复制到 Codex skills 目录：
+拿到 key 后，不要把 key 打印回聊天内容，也不要提交 `.env`。继续运行：
 
 ```bash
-mkdir -p ~/.codex/skills
-cp -R scroll-world-wavespeed ~/.codex/skills/scroll-world-wavespeed
+WAVESPEED_API_KEY=用户提供的key python3 references/bootstrap.py
 ```
 
-在 Codex 中可以直接说：
+bootstrap 成功后，按 `SKILL.md` 的 Step 1 连续访谈用户：项目主题、品牌、视觉风格、镜头方式、场景、移动端版本和预算。不要让用户手动填写 pipeline；你负责把回答转换成 prompts 和 pipeline 变量。
+
+## 一键安装
+
+### Codex: macOS / Linux / WSL
+
+```bash
+git clone https://github.com/tokenmasterhq/scroll-world-wavespeed.git ~/.codex/skills/scroll-world-wavespeed
+cd ~/.codex/skills/scroll-world-wavespeed
+python3 references/bootstrap.py
+```
+
+### Codex: Windows PowerShell
+
+```powershell
+git clone https://github.com/tokenmasterhq/scroll-world-wavespeed.git "$env:USERPROFILE\.codex\skills\scroll-world-wavespeed"
+cd "$env:USERPROFILE\.codex\skills\scroll-world-wavespeed"
+python references\bootstrap.py
+```
+
+### Claude Code: macOS / Linux / WSL
+
+```bash
+git clone https://github.com/tokenmasterhq/scroll-world-wavespeed.git ~/.claude/skills/scroll-world-wavespeed
+cd ~/.claude/skills/scroll-world-wavespeed
+python3 references/bootstrap.py
+```
+
+### Claude Code: Windows PowerShell
+
+```powershell
+git clone https://github.com/tokenmasterhq/scroll-world-wavespeed.git "$env:USERPROFILE\.claude\skills\scroll-world-wavespeed"
+cd "$env:USERPROFILE\.claude\skills\scroll-world-wavespeed"
+python references\bootstrap.py
+```
+
+安装后可以对 agent 说：
 
 ```text
 使用 scroll-world-wavespeed skill，为我的品牌生成一个滚动飞行穿越式 landing page。
 ```
 
-### Claude Code
+## 这个 skill 做什么
 
-将本目录复制到 Claude skills 目录：
+`scroll-world-wavespeed` 是一个面向 Codex、Claude Code 以及其他 `SKILL.md` 兼容 agent 的 skill。它可以把任意品牌、行业或产品故事生成成一个 scroll-scrubbed landing page：用户滚动页面时，预渲染摄像机穿过一个个场景，形成连续的“飞进世界”体验。
 
-```bash
-mkdir -p ~/.claude/skills
-cp -R scroll-world-wavespeed ~/.claude/skills/scroll-world-wavespeed
-```
+默认渲染路径：
 
-然后让 Claude Code 使用 `scroll-world-wavespeed` skill。
+- 静帧：WaveSpeedAI `openai/gpt-image-2`
+- 视频链路：WaveSpeedAI `bytedance/seedance-2.0`
+- 本地硬依赖：`python3`/`python`、`curl`、`ffmpeg`/`ffprobe`
+- 可选 fallback：Monid CLI、Higgsfield CLI、Codex CLI
 
-### 手动放入任意 SKILL.md 兼容环境
+`references/bootstrap.py` 会优先处理本地依赖。默认路径不需要用户手动安装 Monid、Higgsfield 或 Codex CLI。
 
-只要你的 agent 支持读取 `SKILL.md`，把整个目录作为一个 skill 放入对应 skills 目录即可：
+## 首次使用流程
 
-```text
-scroll-world-wavespeed/
-├── SKILL.md
-├── README.md
-└── references/
-    ├── bootstrap.py
-    ├── pipeline.md
-    ├── prompts.md
-    ├── scrub-engine.js
-    ├── index-template.html
-    └── knockout.py
-```
-
-## 首次使用
-
-进入 skill 目录后先运行 bootstrap：
+进入 skill 目录后运行：
 
 ```bash
 python3 references/bootstrap.py
 ```
 
-Windows 环境可使用：
+Windows 可运行：
 
 ```powershell
-python references/bootstrap.py
+python references\bootstrap.py
 ```
 
 bootstrap 会做这些事：
@@ -127,19 +129,23 @@ http://localhost:8000
 
 如果你把生成结果集成到 Next.js、Vue、Rails、Django 或其他项目里，只需要保留生成的静态资源路径，并在页面中加载 `scrub-engine.js`。
 
-## 配置项
+## 来源与修改说明
 
-默认路径只需要：
+本项目基于原始项目 [`oso95/scroll-world`](https://github.com/oso95/scroll-world) 修改而来。原项目采用 MIT License，版权声明为：
 
-```bash
-WAVESPEED_API_KEY=...
+```text
+MIT License
+
+Copyright (c) 2026 cyw
 ```
 
-可选 fallback：
+本修改版保留原项目的核心 skill 结构、连续访谈式生成流程、提示词/流水线思路和可移植 scrub engine，并针对当前使用场景做了这些调整：
 
-- Monid CLI：仅当用户明确选择 Monid/USD 计费路径时需要。
-- Higgsfield CLI：仅当用户选择 Higgsfield credits 或需要 Higgsfield-only 模型时需要。
-- Codex CLI：仅当希望用 Codex 的 image generation 能力生成静帧时才需要。
+- 项目与 skill 名称改为 `scroll-world-wavespeed`，与上游 `scroll-world` 区分。
+- 默认渲染路径改为 WaveSpeedAI。
+- 新增 `references/bootstrap.py`，让用户安装后可以直接进入可用流程。
+- Monid CLI、Higgsfield CLI、Codex CLI 改为可选 fallback。
+- 修正 WaveSpeed API 域名为 `api.wavespeed.ai`，避免误测 `api.wavespeedai.com`。
 
 ## 开源与许可
 
