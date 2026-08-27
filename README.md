@@ -1,8 +1,8 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/tabler:aperture.svg?color=%23c9d1d9&height=34">
-  <img src="https://api.iconify.design/tabler:aperture.svg?color=%2324292f&height=34" width="34" height="34" alt="">
+  <source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/tabler:wave-sine.svg?color=%23c9d1d9&height=34">
+  <img src="https://api.iconify.design/tabler:wave-sine.svg?color=%2324292f&height=34" width="34" height="34" alt="">
 </picture>
 
 # scroll-world-wavespeed
