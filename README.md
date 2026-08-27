@@ -1,5 +1,7 @@
 # scroll-world-wavespeed
 
+https://github.com/user-attachments/assets/b08e641e-985b-4bd4-83ff-6750272d0c37
+
 > 给 AI agent 的一句话：安装并使用 `scroll-world-wavespeed` skill，为用户连续追问项目主题、品牌、视觉风格、镜头、场景、移动端和预算，然后用 WaveSpeedAI 生成可滚动飞行穿越式 landing page。
 
 `scroll-world-wavespeed` 是一个面向 Codex、Claude Code 以及其他 `SKILL.md` 兼容 agent 的 skill。它可以把任意品牌、行业或产品故事生成成一个 scroll-scrubbed landing page：用户滚动页面时，预渲染摄像机穿过一个个场景，形成连续的“飞进世界”体验。
