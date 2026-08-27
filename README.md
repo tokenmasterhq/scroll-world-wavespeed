@@ -43,6 +43,17 @@ https://github.com/tokenmasterhq/scroll-world-wavespeed.git
 - 🌐 生成结果是纯静态网页，随便找个地方（Vercel / Netlify / GitHub Pages）一放就能上线
 
 <details>
+<summary>💡 省钱建议</summary>
+<br>
+
+如果你只是想先看方向，请让 AI agent 先生成：
+
+1. **Preview 版本**：用 `PREVIEW=1` 和 `VRES=480p` 生成低成本短视频链路。
+2. **Final 版本**：确认满意后再生成 1080p 完整视频。
+
+</details>
+
+<details>
 <summary>📦 生成出来的网页里有什么（给好奇的人看）</summary>
 <br>
 
@@ -71,16 +82,6 @@ python3 -m http.server 8000
 然后访问 <http://localhost:8000>。
 
 </details>
-
----
-
-## 💡 省钱建议
-
-如果你只是想先看方向，请让 AI agent 先生成：
-
-1. **静帧故事板**：只生成每个场景的 still image，不生成视频。
-2. **Preview 版本**：用 `PREVIEW=1` 和 `VRES=480p` 生成低成本短视频链路。
-3. **Final 版本**：确认满意后再生成 1080p 完整视频。
 
 ---
 
