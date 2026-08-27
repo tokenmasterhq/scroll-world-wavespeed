@@ -1,6 +1,11 @@
 <div align="center">
 
-# 🌀 scroll-world-wavespeed
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/tabler:aperture.svg?color=%23c9d1d9&height=34">
+  <img src="https://api.iconify.design/tabler:aperture.svg?color=%2324292f&height=34" width="34" height="34" alt="">
+</picture>
+
+# scroll-world-wavespeed
 
 **滚动鼠标，镜头飞进你的品牌世界**
 
@@ -15,7 +20,7 @@ https://github.com/user-attachments/assets/b08e641e-985b-4bd4-83ff-6750272d0c37
 
 ---
 
-## 🚀 三步开始（不用写代码）
+## <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/tabler:rocket.svg?color=%23c9d1d9&height=22"><img src="https://api.iconify.design/tabler:rocket.svg?color=%2324292f&height=22" width="22" height="22" align="middle" alt=""></picture> 三步开始（不用写代码）
 
 1. 打开你的 AI 编程助手（Codex、Claude Code、WorkBuddy 等）
 2. 把下面这段话原样复制粘贴过去
@@ -34,16 +39,17 @@ https://github.com/tokenmasterhq/scroll-world-wavespeed.git
 
 ---
 
-## ✨ 这个 skill 会做什么
+## <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/tabler:sparkles.svg?color=%23c9d1d9&height=22"><img src="https://api.iconify.design/tabler:sparkles.svg?color=%2324292f&height=22" width="22" height="22" align="middle" alt=""></picture> 这个 skill 会做什么
 
 把你的品牌 / 产品 / 行业故事，变成一个滚动式网页：鼠标往下滚，镜头像纪录片一样从一个场景飞进下一个场景，中间零剪辑衔接。
 
-- 📱 可选生成手机端 9:16 竖屏版本
-- 🖼️ 场景静帧与飞行视频均由 WaveSpeedAI 生成
-- 🌐 生成结果是纯静态网页，随便找个地方（Vercel / Netlify / GitHub Pages）一放就能上线
+- 可选生成手机端 9:16 竖屏版本
+- 场景静帧与飞行视频均由 WaveSpeedAI 生成
+- 生成结果是纯静态网页，随便找个地方（Vercel / Netlify / GitHub Pages）一放就能上线
 
 <details>
-<summary>📦 生成出来的网页里有什么（给好奇的人看）</summary>
+<summary><picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/tabler:package.svg?color=%23c9d1d9&height=18"><img src="https://api.iconify.design/tabler:package.svg?color=%2324292f&height=18" width="18" height="18" align="middle" alt=""></picture> 生成出来的网页里有什么（给好奇的人看）</summary>
+<br>
 
 ```text
 index.html
@@ -73,8 +79,19 @@ python3 -m http.server 8000
 
 ---
 
+## <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/tabler:bulb.svg?color=%23c9d1d9&height=22"><img src="https://api.iconify.design/tabler:bulb.svg?color=%2324292f&height=22" width="22" height="22" align="middle" alt=""></picture> 省钱建议
+
+如果你只是想先看方向，请让 AI agent 先生成：
+
+1. **静帧故事板**：只生成每个场景的 still image，不生成视频。
+2. **Preview 版本**：用 `PREVIEW=1` 和 `VRES=480p` 生成低成本短视频链路。
+3. **Final 版本**：确认满意后再生成 1080p 完整视频。
+
+---
+
 <details>
-<summary>🤖 给正在阅读本页的 AI / Agent —— 点开看完整操作说明</summary>
+<summary><picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/tabler:robot.svg?color=%23c9d1d9&height=18"><img src="https://api.iconify.design/tabler:robot.svg?color=%2324292f&height=18" width="18" height="18" align="middle" alt=""></picture> 给正在阅读本页的 AI / Agent —— 点开看完整操作说明</summary>
+<br>
 
 你的目标：帮助没有代码经验的用户安装并使用 `scroll-world-wavespeed`。不要让用户手动填写 pipeline，不要让用户自己改 `.env`。
 
@@ -115,7 +132,8 @@ python3 -m http.server 8000
 </details>
 
 <details>
-<summary>📥 安装命令 —— 点开看各平台手动安装步骤</summary>
+<summary><picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/tabler:download.svg?color=%23c9d1d9&height=18"><img src="https://api.iconify.design/tabler:download.svg?color=%2324292f&height=18" width="18" height="18" align="middle" alt=""></picture> 安装命令 —— 点开看各平台手动安装步骤</summary>
+<br>
 
 **Codex：macOS / Linux / WSL**
 
@@ -152,7 +170,8 @@ python references\bootstrap.py
 </details>
 
 <details>
-<summary>📄 来源与许可</summary>
+<summary><picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/tabler:file-text.svg?color=%23c9d1d9&height=18"><img src="https://api.iconify.design/tabler:file-text.svg?color=%2324292f&height=18" width="18" height="18" align="middle" alt=""></picture> 来源与许可</summary>
+<br>
 
 本项目基于 [`oso95/scroll-world`](https://github.com/oso95/scroll-world) 修改而来。原项目采用 MIT License。
 
