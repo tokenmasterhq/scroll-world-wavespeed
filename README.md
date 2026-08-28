@@ -6,7 +6,9 @@
 
 https://github.com/user-attachments/assets/b08e641e-985b-4bd4-83ff-6750272d0c37
 
-一个给 AI 编程助手用的 skill：连续问你几个问题，就能生成一个「滚动时镜头飞进场景」的落地页。
+一个给 AI 编程助手用的 skill —— 支持 Claude Code、Codex，以及任何兼容 `SKILL.md` 的 agent —— 能为任何行业或品牌生成一个沉浸式的「滚动飞行穿越世界」落地页：随着你往下滚，镜头从场景外一路飞进场景内部，再毫无剪辑地流向下一个场景。一整段连续不断的飞行，穿过一个生成出来的小世界（想象 Emons 物流官网那种效果，换成你想要的任何主题）。
+
+在 [`oso95/scroll-world`](https://github.com/oso95/scroll-world) 原版的基础上，改用 WaveSpeedAI 重做并优化了整条使用流程。
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Powered by WaveSpeedAI](https://img.shields.io/badge/powered%20by-WaveSpeedAI-6c5ce7)](https://wavespeed.ai)
