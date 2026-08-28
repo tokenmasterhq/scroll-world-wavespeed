@@ -22,6 +22,9 @@ from pathlib import Path
 
 
 WS_BASE = "https://api.wavespeed.ai/api/v3"
+# Rough WaveSpeed cost of one dive+connector leg: ~$0.65 previz (3s @480p),
+# ~$1.40 final (8s+5s @1080p). Warn if the balance cannot cover a single leg.
+LOW_BALANCE = 1.40
 ROOT = Path(__file__).resolve().parents[1]
 ENV_FILE = ROOT / ".env"
 ENV_EXAMPLE = ROOT / ".env.example"
@@ -110,7 +113,7 @@ def write_env_key(key: str) -> None:
         pass
 
 
-def check_key(key: str) -> tuple[bool, str]:
+def check_key(key: str) -> tuple[bool, str, float | None]:
     req = urllib.request.Request(
         f"{WS_BASE}/balance",
         headers={"Authorization": f"Bearer {key}"},
@@ -119,11 +122,24 @@ def check_key(key: str) -> tuple[bool, str]:
         with urllib.request.urlopen(req, timeout=20) as resp:
             body = json.loads(resp.read().decode("utf-8"))
         balance = body.get("data", {}).get("balance")
-        return True, f"WaveSpeed auth ok. Balance: {balance}"
+        try:
+            balance = float(balance)
+        except (TypeError, ValueError):
+            balance = None
+        return True, f"WaveSpeed auth ok. Balance: {balance}", balance
     except urllib.error.HTTPError as exc:
-        return False, f"WaveSpeed auth failed: HTTP {exc.code}"
+        return False, f"WaveSpeed auth failed: HTTP {exc.code}", None
     except Exception as exc:
-        return False, f"WaveSpeed check failed: {exc}"
+        return False, f"WaveSpeed check failed: {exc}", None
+
+
+def warn_low_balance(balance: float | None) -> None:
+    if balance is None or balance >= LOW_BALANCE:
+        return
+    print(f"WARNING: balance ${balance:.2f} is below one render leg (~${LOW_BALANCE:.2f}).")
+    print("  Rough cost: ~$0.65 per previz leg (PREVIEW=1 VRES=480p), ~$1.40 per final leg.")
+    print("  An N-scene page needs about N legs. Top up at https://wavespeed.ai before rendering,")
+    print("  or tell the user the run will stop partway.")
 
 
 def main() -> int:
@@ -152,11 +168,12 @@ def main() -> int:
             print("No key entered.")
             return 4
 
-    ok, msg = check_key(key)
+    ok, msg, balance = check_key(key)
     print(msg)
     if not ok:
         return 5
 
+    warn_low_balance(balance)
     write_env_key(key)
     print(f"Wrote {ENV_FILE}")
     print("Ready: source .env before using references/pipeline.md WaveSpeed helpers.")
